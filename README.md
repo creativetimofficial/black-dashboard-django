@@ -2,7 +2,7 @@
 
  ![version](https://img.shields.io/badge/version-1.0.0-blue.svg) [![GitHub issues open](https://img.shields.io/github/issues/creativetimofficial/black-dashboard-django.svg?maxAge=2592000)](https://github.com/creativetimofficial/black-dashboard-django/issues?q=is%3Aopen+is%3Aissue) [![GitHub issues closed](https://img.shields.io/github/issues-closed-raw/creativetimofficial/black-dashboard-django.svg?maxAge=2592000)](https://github.com/creativetimofficial/black-dashboard-django/issues?q=is%3Aissue+is%3Aclosed) [![Join the chat at https://gitter.im/NIT-dgp/General](https://badges.gitter.im/NIT-dgp/General.svg)](https://gitter.im/creative-tim-general/Lobby) [![Chat](https://img.shields.io/badge/chat-on%20discord-7289da.svg)](https://discord.gg/E4aHAQy)
 
-![Black Dashboard PRO Django - Admin Dashboard coded in Django.](https://github.com/creativetimofficial/black-dashboard-django/blob/master/media/black-dashboard-django-intro.gif)
+![Black Dashboard Django - Admin Dashboard coded in Django.](https://github.com/creativetimofficial/black-dashboard-django/blob/master/media/black-dashboard-django-intro.gif)
 
 <br />
 
@@ -36,7 +36,7 @@
 
 > To authenticate use the default credentials ***test / ApS12_ZZs8*** or create a new user on the [registration page](https://creativetim-django-dashboard-black-pro.appseed.us/register/).
 
-- **Black Dashboard PRO Django** [Login Page](https://www.creative-tim.com/live/black-dashboard-django)
+- **Black Dashboard Django** [Login Page](https://www.creative-tim.com/live/black-dashboard-django)
 
 <br />
 
@@ -78,7 +78,7 @@ $ # Access the web app in browser: http://127.0.0.1:8000/
 <br />
 
 ## Documentation
-The documentation for the **Black Dashboard PRO Django** is hosted at our [website](https://demos.creative-tim.com/black-dashboard-django/docs/1.0/getting-started/getting-started-django.html).
+The documentation for the **Black Dashboard Django** is hosted at our [website](https://demos.creative-tim.com/black-dashboard-django/docs/1.0/getting-started/getting-started-django.html).
 
 <br />
 
@@ -159,9 +159,9 @@ At present, we officially aim to support the last two versions of the following 
 
 ## Reporting Issues
 
-We use GitHub Issues as the official bug tracker for the **Black Dashboard PRO Django**. Here are some advices for our users that want to report an issue:
+We use GitHub Issues as the official bug tracker for the **Black Dashboard Django**. Here are some advices for our users that want to report an issue:
 
-1. Make sure that you are using the latest version of the **Black Dashboard PRO Django**. Check the CHANGELOG from your dashboard on our [website](https://www.creative-tim.com/).
+1. Make sure that you are using the latest version of the **Black Dashboard Django**. Check the CHANGELOG from your dashboard on our [website](https://www.creative-tim.com/).
 2. Providing us reproducible steps for the issue will shorten the time it takes for it to be fixed.
 3. Some issues may be browser-specific, so specifying in what browser you encountered the issue might help.
 
@@ -199,4 +199,4 @@ If you have questions or need help integrating the product please [contact us](h
 <br />
 
 ---
-[Black Dashboard PRO Django](https://www.creative-tim.com/product/black-dashboard-django) - Provided by [Creative Tim](https://www.creative-tim.com/) and [AppSeed](https://appseed.us)
+[Black Dashboard Django](https://www.creative-tim.com/product/black-dashboard-django) - Provided by [Creative Tim](https://www.creative-tim.com/) and [AppSeed](https://appseed.us)
