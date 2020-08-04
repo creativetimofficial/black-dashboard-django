@@ -1,0 +1,315 @@
+.card-wizard {
+    min-height: 410px;
+    background: transparent !important;
+    box-shadow: none !important;
+    opacity: 0;
+    @include transitions($general-transition-time, $transition-linear);
+
+    &.active{
+        opacity: 1;
+    }
+
+    @include set-wizard-color($primary);
+
+    &[data-color="primary"]{
+        @include set-wizard-color($primary);
+    }
+
+    &[data-color="green"]{
+        @include set-wizard-color(darken($success,10%));
+    }
+
+    &[data-color="blue"]{
+        @include set-wizard-color($info);
+    }
+
+    &[data-color="red"]{
+        @include set-wizard-color($danger);
+    }
+
+    &[data-color="orange"]{
+        @include set-wizard-color($warning);
+    }
+
+    .nav-pills .nav-item {
+      position: relative;
+      .nav-link{
+          height: 45px;
+          width: 45px;
+          min-width: 45px;
+          border-radius: 50% !important;
+          position: absolute;
+          left: 50%;
+          top: -20px;
+          transform: translate(-50%);
+          background-color: white;
+          p{
+            position: absolute;
+            top: 110%;
+            left: 50%;
+            transform: translate(-50%);
+            font-weight: $font-weight-normal;
+            color: $white;
+          }
+
+          &:hover,&:focus{
+            background-color: white;
+          }
+
+      }
+
+
+    }
+
+    .nav-pills .nav-item .nav-link.active,
+    .nav-pills .nav-item .nav-link:hover,
+    .nav-pills .nav-item .nav-link:focus,
+    .nav-pills .nav-item .nav-link.active:focus,
+    .nav-pills .nav-item .nav-link.active:hover{
+        box-shadow: none;
+    }
+
+    .picture-container{
+        position: relative;
+        cursor: pointer;
+        text-align: center;
+    }
+
+    .card-body {
+      background: $black;
+      border-top-left-radius: $border-radius-lg;
+      border-top-right-radius: $border-radius-lg;
+      margin-top: 20px;
+    }
+
+    .card-footer {
+      background-color: $black !important;
+      border-bottom-left-radius: $border-radius-lg;
+      border-bottom-right-radius: $border-radius-lg;
+      padding-bottom: 20px;
+
+      .pull-right {
+        padding-right: 80px;
+      }
+      .pull-left {
+        padding-left: 80px;
+      }
+    }
+
+    .wizard-navigation {
+      position: relative;
+      margin: 80px auto 60px;
+
+      .nav-link{
+        display: flex;
+        align-items: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+      }
+
+      .progress-with-circle{
+          position: relative;
+          top: 5px;
+          height: 5px;
+          border-radius: $border-radius-lg;
+
+          .progress-bar{
+              height: 100%;
+              border-radius: $border-radius-lg;
+              box-shadow: none;
+              -webkit-transition: width .3s ease;
+              -o-transition: width .3s ease;
+              transition: width .3s ease;
+          }
+      }
+    }
+
+    .wizard-navigation .nav-link i,
+    .moving-tab i{
+      display: inline-block;
+      font-size: 19px;
+      line-height: initial;
+      padding: 0;
+      vertical-align: bottom;
+    }
+
+    .picture{
+        width: 106px;
+        height: 106px;
+        background-color: #999999;
+        border: 1px solid $light-gray;
+        color: #FFFFFF;
+        border-radius: 50%;
+        margin: 5px auto;
+        overflow: hidden;
+        transition: all 0.2s;
+        -webkit-transition: all 0.2s;
+
+        &:hover{
+            border-color: #2ca8ff;
+        }
+    }
+
+
+
+
+
+    .picture input[type="file"] {
+        cursor: pointer;
+        display: block;
+        height: 100%;
+        left: 0;
+        opacity: 0 !important;
+        position: absolute;
+        top: 0;
+        width: 100%;
+    }
+
+    .picture-src{
+        width: 100%;
+    }
+
+    .tab-content{
+        padding: 20px 0;
+    }
+
+    .wizard-footer{
+        padding: 0 15px;
+
+        .checkbox{
+            margin-top: 16px;
+        }
+    }
+
+    .disabled{
+        display: none;
+    }
+
+    .wizard-header{
+        text-align: center;
+        padding: 25px 0 35px;
+
+        h5{
+           margin: 5px 0 0;
+       }
+    }
+
+    .nav-pills > li{
+        text-align: center;
+    }
+
+    .btn{
+        text-transform: uppercase;
+    }
+
+    .info-text{
+        text-align: center;
+        font-weight: 300;
+        margin: 10px 0 30px;
+    }
+
+    .choice{
+        text-align: center;
+        cursor: pointer;
+        margin-top: 20px;
+
+        &[disabled]{
+            pointer-events: none;
+            cursor: not-allowed;
+            opacity: .5;
+        }
+
+        .icon{
+            text-align: center;
+            vertical-align: middle;
+            height: 116px;
+            width: 116px;
+            border-radius: 50%;
+            color: $default;
+            margin: 0 auto 20px;
+            border: 1px solid $light-gray;
+            transition: all 0.2s;
+            -webkit-transition: all 0.2s;
+        }
+
+        i{
+            font-size: 30px;
+            line-height: 116px;
+            position: absolute;
+            left: 0;
+            right: 0;
+        }
+
+        &:hover,
+        &.active{
+            .icon{
+                border-color: #2ca8ff;
+            }
+        }
+
+        input[type="radio"],
+        input[type="checkbox"]{
+            position: absolute;
+            left: -10000px;
+            z-index: -1;
+        }
+    }
+
+    .btn-finish{
+        display: none;
+    }
+
+    .card-title + .description{
+        font-size: 17px;
+        margin-bottom: 32px;
+    }
+
+    .wizard-title{
+        margin: 0;
+    }
+
+    .nav-pills{
+        background-color: $white;
+        border-radius: $border-radius-lg;
+        height: 5px;
+
+        > li + li {
+            margin-left: 0;
+        }
+
+        > li > a {
+            border: 0 !important;
+            border-radius: 0 ;
+            line-height: 18px;
+            text-transform: uppercase;
+            font-size: 12px;
+            font-weight: 500;
+            min-width: 100px;
+            text-align: center;
+            color: #555555;
+        }
+
+        > li.active > a,
+        > li.active > a:hover,
+        > li.active > a:focus,
+        > li > a:hover,
+        > li > a:focus{
+            background-color: inherit;
+            box-shadow: none;
+        }
+
+        > li i{
+            display: block;
+            font-size: 30px;
+            padding: 15px 0;
+        }
+    }
+
+    .input-group.has-danger {
+      .error {
+        display: block;
+        width: 100%;
+        margin-top: 3px;
+      }
+    }
+}

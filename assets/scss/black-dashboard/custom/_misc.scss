@@ -1,0 +1,221 @@
+
+/* Animations */
+.nav-pills .nav-link,
+.navbar,
+.nav-tabs .nav-link,
+.sidebar .nav a,
+.sidebar .nav a i,
+.sidebar .nav p,
+.navbar-collapse .navbar-nav .nav-link,
+.animation-transition-general,
+.tag,
+.tag [data-role="remove"],
+.animation-transition-general{
+    @include transitions($general-transition-time, $transition-ease);
+}
+
+//transition for dropdown caret
+.bootstrap-switch-label:before,
+.caret{
+    @include transitions($fast-transition-time, $transition-ease);
+}
+
+.dropdown-toggle[aria-expanded="true"]:after,
+a[data-toggle="collapse"][aria-expanded="true"] .caret,
+.card-collapse .card a[data-toggle="collapse"][aria-expanded="true"] i,
+.card-collapse .card a[data-toggle="collapse"].expanded i{
+    @include rotate-180();
+}
+
+.caret{
+  width: 0;
+  height: 0;
+  vertical-align: middle;
+  border-top: 4px dashed;
+  border-right: 4px solid transparent;
+  border-left: 4px solid transparent;
+  margin-top: -5px;
+  position: absolute;
+  top: 30px;
+  margin-left: 5px;
+}
+
+.pull-left{
+  float: left;
+}
+.pull-right{
+  float: right;
+}
+
+
+// card user profile page
+
+.card {
+  form {
+    label + .form-control {
+      margin-bottom: 20px;
+    }
+  }
+}
+
+// offline documentation
+
+.offline-doc {
+  .page-header:before {
+    background: rgba(0,0,0,.75);
+  }
+
+  .navbar {
+    border: none;
+  }
+
+  .footer {
+    position: absolute;
+    width: 100%;
+    background: transparent;
+    bottom: 0;
+    color: $white;
+    padding: 0.9375rem 0;
+  }
+}
+
+
+.card {
+  .map-title {
+    color: $white;
+  }
+
+    .table {
+      tr td {
+        p.title {
+          padding-top: 7px;
+          margin-bottom: 0;
+        }
+      }
+    }
+
+
+  &.card-chart {
+    .gmnoprint,
+    .gm-style-cc {
+      display: none !important;
+    }
+  }
+}
+
+// documentation
+
+.bd-docs {
+
+  h1,h2,h3,h4,h5,h6,p,ul li,ol li{
+    color:#2c2c2c;
+  }
+
+
+  .bd-content>table>thead>tr>th {
+    color: $black;
+
+  }
+
+  .blockquote, .blockquote p, .card p{
+    color: rgba($white,0.8);
+  }
+  .bd-example {
+    background: linear-gradient(#1e1e2f,#1e1e24);
+
+  }
+
+  .navbar {
+    border-top: none;
+
+    .navbar-nav .nav-link {
+      color: rgba(255,255,255,.8) !important;
+    }
+  }
+
+  .bd-example {
+
+    .btn{
+      margin: 4px 0;
+    }
+    .btn .badge {
+      display: inline-block;
+    }
+
+    .tim-icons{
+      color: $white;
+    }
+
+    .popover .popover-header {
+    color: hsla(0,0%,71%,.6);
+  }
+
+
+    .popover-body {
+      p {
+        color: $gray-900;
+      }
+    }
+
+    &.tooltip-demo p{
+      color: rgba($white,.8);
+    }
+  }
+
+  .card.card-body,
+  .card .card-body {
+    color: hsla(0,0%,100%,.8);
+  }
+
+  label,
+  .form-check {
+    color: hsla(0,0%,100%,.8);
+  }
+
+  .form-check + .btn {
+    margin-top: 20px;
+  }
+
+  .bd-example,
+  table {
+    thead th {
+      color: hsla(0,0%,100%,.8);
+    }
+
+    h1, h2, h3, h4, h5, h6,
+    .h1, .h2, .h3, .h4, .h5, .h6 {
+      color: hsla(0,0%,100%,.8);
+    }
+
+    .datepicker{
+      thead th, table thead th,.tim-icons{
+        color: $primary;
+      }
+
+    }
+
+    .picker-switch .tim-icons{
+      color: $primary;
+    }
+  }
+
+  .footer {
+    .container-fluid > nav {
+      display: inline-block;
+    }
+  }
+
+  #exampleModalLong.modal.show {
+    .modal-dialog {
+      transform: translateY(5%);
+    }
+  }
+}
+.modal.show .modal-dialog {
+  -webkit-transform: translate(0,30%);
+  transform: translate(0,30%);
+}
+
+code {
+  color: $pink;
+}

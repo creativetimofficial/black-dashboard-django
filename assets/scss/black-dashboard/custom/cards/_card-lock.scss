@@ -1,0 +1,18 @@
+.card-lock{
+    .card-header{
+        img{
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin-top: -60px;
+            box-shadow: $box-shadow-raised;
+        }
+    }
+
+}
+
+@include media-breakpoint-up(sm){
+  .card.card-lock {
+    margin-top: 13vh;
+  }
+}

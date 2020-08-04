@@ -1,0 +1,21 @@
+.card-wizard{
+  .card-header{
+    padding-bottom: 10px;
+  }
+}
+
+@include media-breakpoint-down(xs){
+
+  .card-wizard .card-footer .pull-left {
+    padding-left: 0;
+    float: none;
+    text-align: center;
+  }
+
+  .card-wizard .card-footer .pull-right {
+    padding-right: 0;
+    float: none;
+    text-align: center;
+  }
+
+}

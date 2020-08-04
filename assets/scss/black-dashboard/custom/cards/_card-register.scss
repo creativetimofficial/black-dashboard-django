@@ -1,0 +1,79 @@
+.card-register {
+  overflow: hidden;
+
+    .header {
+        margin-left: 20px;
+        margin-right: 20px;
+        padding: 30px 0;
+    }
+
+    .text-divider {
+        margin-top: 30px;
+        margin-bottom: 0px;
+        text-align: center;
+    }
+
+    .content {
+        padding: 0px 30px;
+    }
+
+    .form-check {
+        margin-top: 20px;
+        margin-left: 20px;
+
+        label:not(.form-check-label){
+          padding-left: 38px;
+        }
+    }
+
+    .card-header {
+      padding: 0 0 50px;
+      overflow: hidden;
+
+      .card-title {
+        position: relative;
+        font-size: 5em;
+        font-weight: 900;
+        color: $black;
+        text-transform: lowercase;
+        margin-left: -5px;
+        z-index: 1;
+      }
+    }
+
+    .card-img {
+      position: absolute;
+      left: 0;
+      top: -15%;
+      width: 70%;
+    }
+
+    .social-line {
+        margin-top: 20px;
+        text-align: center;
+
+        .btn.btn-icon ,
+        .btn.btn-icon .btn-icon {
+            margin-left: 5px;
+            margin-right: 5px;
+            box-shadow: 0px 5px 50px 0px rgba(0, 0, 0, 0.2);
+        }
+    }
+
+    .card-footer {
+        margin-bottom: 10px;
+        margin-top: 24px;
+    }
+
+    &.card-white{
+      .card-header .card-title{
+        color: $white;
+      }
+    }
+}
+
+@include media-breakpoint-down(md){
+  .card.card-register .card-img {
+    width: 95%;
+  }
+}

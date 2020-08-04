@@ -1,0 +1,85 @@
+.nav-link {
+    color: $nav-link-color;
+
+    &:hover {
+        color: theme-color("primary");
+    }
+}
+
+// Pills
+
+.nav-pills {
+
+    .nav-link {
+    	  padding: $nav-pills-padding-y $nav-pills-padding-x;
+        color: $nav-pills-link-color;
+        font-weight: 500;
+        background-color: $nav-pills-bg;
+        transition: $transition-base;
+
+        &:hover {
+        	color: $nav-pills-link-hover-color;
+        }
+    }
+
+    .nav-link.active,
+    .show > .nav-link {
+        color: $nav-pills-link-active-color;
+        background-color: $nav-pills-link-active-bg;
+    }
+
+
+}
+
+@include media-breakpoint-down(sm) {
+    .nav-pills:not(.nav-pills-circle) {
+        .nav-item {
+            padding-right: 0;
+        }
+    }
+}
+
+// Nav pills circle
+
+.nav-pills-circle {
+    .nav-link {
+        text-align: center;
+        height: 60px;
+        width: 60px;
+        padding: 0;
+        line-height: 60px;
+        border-radius: 50%;
+    }
+
+    .nav-link-icon {
+        i, svg {
+            font-size: 1rem;
+        }
+    }
+}
+
+// Nav wrapper
+.nav-wrapper {
+    padding: 1rem 0;
+    @include border-top-radius($card-border-radius);
+
+    + .card {
+        @include border-top-radius(0);
+        @include border-bottom-radius($card-border-radius);
+    }
+}
+
+
+@include media-breakpoint-down(sm) {
+  .nav-tabs {
+    display: inline-block;
+    width: 100%;
+    padding-left: 100px;
+    padding-right: 100px;
+    text-align: center;
+
+    .nav-item > .nav-link {
+        margin-bottom: 5px;
+    }
+  }
+}

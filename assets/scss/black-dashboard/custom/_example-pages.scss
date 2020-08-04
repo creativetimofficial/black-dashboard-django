@@ -1,0 +1,319 @@
+.login-page {
+    .card-login {
+        border-radius: $border-radius-lg;
+        padding-bottom: $padding-base-horizontal;
+
+        .card-header {
+          padding: 0 0 100px;
+          overflow: hidden;
+          img{
+            position: absolute;
+          }
+          .card-title{
+            position: relative;
+            font-size: 5em;
+            font-weight: 900;
+            color: $black;
+            text-transform: lowercase;
+            margin-left: -5px;
+            z-index: 1;
+          }
+        }
+        .btn-wd{
+            min-width: 180px;
+        }
+
+        .logo-container{
+            width: 65px;
+            margin: 0 auto;
+            margin-bottom: 55px;
+
+            img{
+                width: 100%;
+            }
+        }
+
+        .input-group:last-child{
+            margin-bottom: 40px;
+        }
+
+        &.card-plain{
+            @include input-coloured-bg($opacity-5, $white, $white, $transparent-bg, $opacity-1, $opacity-2);
+
+            .input-group-addon,
+            .form-group.no-border .input-group-addon,
+            .input-group.no-border .input-group-addon{
+                color: $opacity-8;
+            }
+        }
+
+        &.card-white{
+
+          background: $white;
+
+          .card-header{
+            .card-title{
+              color: $white;
+            }
+          }
+
+          @include form-control-placeholder(rgba($black,0.4), 1);
+            .has-danger{
+              .form-control, .input-group-prepend .input-group-text{
+                border-color: $danger-states;
+              }
+            }
+
+            .input-group-prepend .input-group-text{
+              border-color: rgba($black-states,0.2);
+              color: $black-states;
+            }
+
+            .form-control{
+              color: $black;
+              border-color: rgba($black-states,0.2);
+              &:focus{
+                border-color: $primary;
+              }
+            }
+
+          .form-group.no-border,
+          .input-group.no-border{
+              .form-control,
+              .form-control + .input-group-prepend .input-group-text,
+              .form-control + .input-group-append .input-group-text,
+              .input-group-prepend .input-group-text,
+              .input-group-append .input-group-text{
+                  background-color: $opacity-gray-3;
+                  &:focus,
+                  &:active,
+                  &:active{
+                      background-color: $opacity-gray-5;
+                  }
+              }
+
+              .form-control{
+                  &:focus{
+                      & + .input-group-prepend .input-group-text,
+                      & + .input-group-append .input-group-text{
+
+                          background-color: $transparent-bg;
+                      }
+                  }
+              }
+
+
+          }
+
+          .input-group[disabled]{
+              .input-group-prepend .input-group-text,
+              .input-group-append .input-group-text{
+                  background-color: $black;
+              }
+          }
+
+          .form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control{
+            background: $light-gray;
+            border-color: rgba($black-states,0.3);
+          }
+
+          .input-group-focus{
+              .input-group-prepend .input-group-text,
+              .input-group-append .input-group-text,
+              .form-control{
+                background-color: $white;
+                border-color: $primary;
+              }
+
+              &.no-border{
+                  .input-group-prepend .input-group-text,
+                  .input-group-append .input-group-text{
+
+                      background-color: $opacity-gray-5;
+                  }
+              }
+          }
+          .input-group-prepend .input-group-text {
+              border-right: none;
+          }
+
+          .input-group-append .input-group-text {
+              border-left: none;
+          }
+
+          .has-danger .form-control:focus, .has-success.input-group-focus .input-group-append .input-group-text, .has-success.input-group-focus .input-group-prepend .input-group-text {
+            border-color: $danger-states;
+          }
+
+          .has-success .form-control:focus, .has-success.input-group-focus .input-group-append .input-group-text, .has-success.input-group-focus .input-group-prepend .input-group-text {
+            border-color: darken($success, 10%);
+          }
+
+        }
+    }
+
+    .link{
+        font-size: 10px;
+        text-decoration: none;
+    }
+
+    .card-black{
+      .link{
+        color: $white;
+      }
+    }
+}
+
+.full-page{
+    & > .content,
+    & > .footer{
+        position: relative;
+        z-index: 4;
+    }
+
+    & > .content{
+        padding-bottom: 150px;
+        padding-top: 150px;
+    }
+
+    .footer{
+        position: absolute;
+        width: 100%;
+        bottom: 0;
+        padding-left: 48px;
+        padding-right: 48px;
+
+        .container{
+            color: $white;
+        }
+    }
+
+    .full-page-background{
+        position: absolute;
+        z-index: 1;
+        height: 100%;
+        width: 100%;
+        display: block;
+        top: 0;
+        left: 0;
+        background-size: cover;
+        background-position: center center;
+    }
+
+
+
+    &.pricing-page{
+        .description{
+            margin-bottom: 65px;
+            color: rgba($white,0.7);
+        }
+    }
+
+    &.register-page{
+        .info-horizontal{
+            padding: 0px 0px 20px;
+        }
+
+        .info-horizontal{
+            text-align: left !important;
+
+            .icon{
+                margin-top: 0;
+
+                >i{
+                    font-size: 2em;
+                }
+
+                &.icon-circle{
+                    width: 65px;
+                    height: 65px;
+                    max-width: 65px;
+                    margin-top: 8px;
+
+                    i{
+                        display: table;
+                        margin: 0 auto;
+                        line-height: 3.5;
+                        font-size: 1.9em;
+                    }
+                }
+            }
+            .description{
+                overflow: hidden;
+                .info-title{
+                  margin-bottom: 20px;
+                }
+            }
+
+        }
+    }
+
+    &.pricing-page, &.login-page, &.lock-page, &.register-page {
+      min-height: 100vh;
+      background: radial-gradient($background-black, $background-states-black);
+    }
+}
+
+@include media-breakpoint-down(sm){
+
+  .landing-page .section-story-overview .image-container:nth-child(2) {
+    margin-left: 0;
+    margin-bottom: 30px;
+  }
+
+  .login-page .card-login .card-header img {
+    width: 70%;
+  }
+}
+
+@include media-breakpoint-down(xs){
+  .register-page .full-page >.content {
+    padding-top: 50px;
+  }
+
+  .page-header{
+    .container h6.category-absolute{
+        width: 90%;
+    }
+  }
+}
+
+@media only screen
+and (min-device-width : 768px)
+and (max-device-width : 1024px)
+and (orientation : landscape) {
+
+  .pricing-page,
+  .register-page,
+  .login-page,
+  .lock-page {
+    .navbar .navbar-toggle .navbar-toggler{
+      display: none;
+    }
+  }
+
+}
+
+@media only screen
+and (min-device-width : 768px)
+and (max-device-width : 1024px)
+and (orientation : portrait) {
+  .register-page .full-page .content {
+    .card-register {
+      margin-top: 3rem!important;
+    }
+  }
+}
+
+@include media-breakpoint-down(md){
+  .lock-page,
+  .login-page,
+  .pricing-page,
+  .register-page {
+    .navbar {
+      .navbar-wrapper .navbar-toggle {
+        display: none !important;
+      }
+    }
+  }
+}
