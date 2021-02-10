@@ -9,7 +9,7 @@
 > Free product - **Django Dashboard** starter project - Features:
 
 - UI Kit: **Black Dashboard** (Free Version) provided by **[Creative-Tim](https://www.creative-tim.com/)**
-- [Codebase](https://github.com/app-generator/boilerplate-code-django-dashboard) version v1.0.2 - provided by **[AppSeed](https://appseed.us/)**
+- Django Codebase - provided by **[AppSeed](https://appseed.us/)**
 - UI-Ready app, SQLite Database, Django Native ORM
 - Modular design, clean code-base
 - Session-Based Authentication, Forms validation

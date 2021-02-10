@@ -1,29 +1,21 @@
 {
-  "name": "black-dashboard-django",
-  "version": "1.0.0",
-  "description": "A simple UI-Ready Django boilerplate.",
-  "scripts": {
-    "lint": "eslint ."
-  },
-  "engines": {
-    "node": "8.11.3"
-  },
-  "devDependencies": {
-    "eslint": "5.0.0",
-    "eslint-config-google": "0.9.1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/app-generator/django-dashboard-black"
-  },
-  "keywords": [
-    "django",
-    "admin-panel",
-    "open-source"
-  ],
-  "author": "AppSeed.us",
-  "contributors": [
-    "AppSeed Support <support@appseed.us>"
-  ],
-  "license": "MIT"
+    "name": "black-dashboard-django",
+    "mastertemplate": "boilerplate-code-django-dashboard",
+    "version": "1.0.1",
+    "description": "Template project - Django Boilerplate Code ",
+    "scripts": {},
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/creativetimofficial/black-dashboard-django"
+    },
+    "bugs": {
+        "url": "https://github.com/creativetimofficial/black-dashboard-django/issues",
+        "email": "support@appseed.us"
+    },
+    "author": "Creative-Tim / AppSeed.us",
+    "engines": {
+        "node": ">=10.0.0"
+    },
+    "dependencies": {},
+    "devDependencies": {}
 }
