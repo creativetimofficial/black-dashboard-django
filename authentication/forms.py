@@ -1,6 +1,5 @@
 # -*- encoding: utf-8 -*-
 """
-License: MIT
 Copyright (c) 2019 - present AppSeed.us
 """
 
@@ -13,16 +12,14 @@ class LoginForm(forms.Form):
         widget=forms.TextInput(
             attrs={
                 "placeholder" : "Username",                
-                "value"       : "test",
-                "class"       : "form-control"
+                "class": "form-control"
             }
         ))
     password = forms.CharField(
         widget=forms.PasswordInput(
             attrs={
-                "placeholder" : "Password",
-                "value"       : "ApS12_ZZs8",
-                "class"       : "form-control"
+                "placeholder" : "Password",                
+                "class": "form-control"
             }
         ))
 

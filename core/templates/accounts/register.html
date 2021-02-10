@@ -20,9 +20,9 @@
 
                   <h6 class="card-category">
                       {% if msg %}
-                        <span class="text-danger">{{ msg }}</span>
+                        <span class="text-danger">{{ msg | safe }}</span>
                       {% else %}
-                        Add your credentials or <a href={% url 'login' %} >authenticate</a> with an existing account.
+                        Add your credentials 
                       {% endif %}  
                   </h6>
                 </div>
