@@ -1,23 +1,19 @@
 # [Black Dashboard Django](https://www.creative-tim.com/product/black-dashboard-django) [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social&logo=twitter)](https://twitter.com/home?status=Material%20Dashboard,%20a%20free%20Material%20Bootstrap%204%20Admin%20Template%20%E2%9D%A4%EF%B8%8F%20https%3A//bit.ly/2Lyat1Y%20%23bootstrap%20%23material%20%23design%20%23developers%20%23freebie%20%20via%20%40CreativeTim)
 
-> Open-source **[Django Dashboard](https://www.creative-tim.com/product/black-dashboard-django)** crafted on top of **Black Dashboard** Template, a popular Bootstrap 4 design. The product might help beginners (and not only) to deliver faster a new Django project and reuse the existing codebase already enhanced with a database, authentication, and deployment scripts. 
-
-<br />
-
  ![version](https://img.shields.io/badge/version-1.0.1-blue.svg) [![GitHub issues open](https://img.shields.io/github/issues/creativetimofficial/black-dashboard-django.svg?maxAge=2592000)](https://github.com/creativetimofficial/black-dashboard-django/issues?q=is%3Aopen+is%3Aissue) [![GitHub issues closed](https://img.shields.io/github/issues-closed-raw/creativetimofficial/black-dashboard-django.svg?maxAge=2592000)](https://github.com/creativetimofficial/black-dashboard-django/issues?q=is%3Aissue+is%3Aclosed) [![Join the chat at https://gitter.im/NIT-dgp/General](https://badges.gitter.im/NIT-dgp/General.svg)](https://gitter.im/creative-tim-general/Lobby) [![Chat](https://img.shields.io/badge/chat-on%20discord-7289da.svg)](https://discord.gg/E4aHAQy)
 
-![Black Dashboard Django - Admin Dashboard coded in Django.](https://github.com/creativetimofficial/black-dashboard-django/blob/master/media/black-dashboard-django-intro.gif)
+Open-source **[Django Template](https://www.creative-tim.com/templates/django)** crafted on top of **Black Dashboard**, a popular Bootstrap 4 design. Start your development with a modern, dark-themed Bootstrap 4 Admin template for Django. It features a huge number of components built to fit together and look fantastic. If you want to code faster, with a smooth workflow, then you should try this template carefully developed with Django, a well-known Python Framework. **Django codebase** is crafted using a simple, modular structure that follows the best practices and provides authentication, database configuration, and deployment scripts for Docker and Gunicorn/Nginx stack. 
 
-<br />
-
-> Free product - **Django Dashboard** starter project - Features:
-
-- UI Kit: **Black Dashboard** (Free Version) provided by **[Creative-Tim](https://www.creative-tim.com/)**
+- UI Kit: **Black Dashboard** (Free Version)
 - Django Codebase - provided by **[AppSeed](https://appseed.us/)**
 - UI-Ready app, SQLite Database, Django Native ORM
 - Modular design, clean code-base
 - Session-Based Authentication, Forms validation
 - Deployment scripts: Docker, Gunicorn / Nginx
+
+<br />
+
+![Black Dashboard Django - Admin Dashboard coded in Django.](https://github.com/creativetimofficial/black-dashboard-django/blob/master/media/black-dashboard-django-intro.gif)
 
 <br />
 
@@ -38,7 +34,7 @@
 
 ## Demo
 
-> To authenticate use the default credentials ***test / ApS12_ZZs8*** or create a new user on the [registration page](https://creativetim-django-dashboard-black-pro.appseed.us/register/).
+> To authenticate use the default credentials ***test / ApS12_ZZs8*** or create a new user on the **registration page**.
 
 - **Black Dashboard Django** [Login Page](https://www.creative-tim.com/live/black-dashboard-django)
 
