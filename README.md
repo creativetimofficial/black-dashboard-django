@@ -15,7 +15,7 @@ Open-source **[Django Template](https://www.creative-tim.com/templates/django)**
 
 <br />
 
-![Black Dashboard Django - Admin Dashboard coded in Django.](https://github.com/creativetimofficial/black-dashboard-django/blob/master/media/black-dashboard-django-intro.gif)
+![Black Dashboard Django - Admin Dashboard coded in Django.](https://user-images.githubusercontent.com/51070104/133767654-7ba1201d-152e-4de2-820b-35e6fc17560a.png)
 
 <br />
 
