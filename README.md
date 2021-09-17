@@ -7,7 +7,7 @@ Open-source **[Django Template](https://www.creative-tim.com/templates/django)**
 - Up-to-date [dependencies](./requirements.txt): **Django 3.2.6 LTS**
 - [SCSS compilation](#recompile-css) via **Gulp**
 - UI Kit: **Black Dashboard** (Free Version)
-- Django Codebase - provided by **[AppSeed](https://appseed.us/)**
+- [Django](https://appseed.us/boilerplate-code/django-dashboard) Codebase - provided by **[App Generator](https://appseed.us/)**
 - UI-Ready app, SQLite Database, Django Native ORM
 - Modular design, clean code-base
 - Session-Based Authentication, Forms validation
