@@ -1,15 +1,15 @@
 # Change Log
 
 ## [1.0.3] 2023-01-26
-### Improvements
+### Changes
 
 - `Bump UI version`: v1.0.2
   - `Persistent Dark-mode` (local storage)
 - Added CDN/Static Server management
   - `ASSETS_ROOT` env variable
-  
+
 ## [1.0.2] 2021-09-17
-### Improvements
+### Changes
 
 - Bump Django Codebase to [v2.0.4](https://github.com/app-generator/boilerplate-code-django-dashboard/releases)
 - Dependencies update (all packages)
