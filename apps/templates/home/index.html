@@ -1,9 +1,23 @@
 {% extends "layouts/base.html" %}
 
 {% block title %} Dashboard {% endblock %} 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{ ASSETS_ROOT }}/css/black-dashboard.css">
+    <link rel="stylesheet" href="{{ ASSETS_ROOT }}/css/black-dashboard.min.css">
+    <link rel="stylesheet" href="{{ ASSETS_ROOT }}/css/black-dashboard.css.map">
+</head>
+<body>
+    
 
 <!-- Specific Page CSS goes HERE  -->
-{% block stylesheets %}{% endblock stylesheets %}
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ ASSETS_ROOT }}/css/black-dashboard.css">
+{% endblock stylesheets %}
 
 {% block content %}
 
@@ -404,3 +418,6 @@
 </script>
 
 {% endblock javascripts %}
+
+</body>
+</html>
