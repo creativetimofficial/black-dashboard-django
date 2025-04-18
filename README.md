@@ -1,14 +1,31 @@
 # [Black Dashboard Django](https://www.creative-tim.com/product/black-dashboard-django) [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social&logo=twitter)](https://twitter.com/home?status=Material%20Dashboard,%20a%20free%20Material%20Bootstrap%204%20Admin%20Template%20%E2%9D%A4%EF%B8%8F%20https%3A//bit.ly/2Lyat1Y%20%23bootstrap%20%23material%20%23design%20%23developers%20%23freebie%20%20via%20%40CreativeTim)
 
- ![version](https://img.shields.io/badge/version-1.0.1-blue.svg) [![GitHub issues open](https://img.shields.io/github/issues/creativetimofficial/black-dashboard-django.svg?maxAge=2592000)](https://github.com/creativetimofficial/black-dashboard-django/issues?q=is%3Aopen+is%3Aissue) [![GitHub issues closed](https://img.shields.io/github/issues-closed-raw/creativetimofficial/black-dashboard-django.svg?maxAge=2592000)](https://github.com/creativetimofficial/black-dashboard-django/issues?q=is%3Aissue+is%3Aclosed) [![Join the chat at https://gitter.im/NIT-dgp/General](https://badges.gitter.im/NIT-dgp/General.svg)](https://gitter.im/creative-tim-general/Lobby) [![Chat](https://img.shields.io/badge/chat-on%20discord-7289da.svg)](https://discord.gg/E4aHAQy)
+ ![version](https://img.shields.io/badge/version-1.0.1-blue.svg) [![GitHub issues open](https://img.shields.io/github/issues/creativetimofficial/black-dashboard-django.svg?maxAge=2592000)](https://github.com/creativetimofficial/black-dashboard-django/issues?q=is%3Aopen+is%3Aissue) [![GitHub issues closed](https://img.shields.io/github/issues-closed-raw/creativetimofficial/black-dashboard-django.svg?maxAge=2592000)](https://github.com/creativetimofficial/black-dashboard-django/issues?q=is%3Aissue+is%3Aclosed) [![Join the chat at https://gitter.im/NIT-dgp/General](https://badges.gitter.im/NIT-dgp/General.svg)](https://gitter.im/creative-tim-general/Lobby) [![Chat](https://img.shields.io/badge/chat-on%20discord-7289da.svg)](https://discord.gg/haJ7ErsNY3)
 
-Open-source **[Django Template](https://www.creative-tim.com/templates/django)** crafted on top of **Black Dashboard**, a popular Bootstrap 4 design. Start your development with a modern, dark-themed Bootstrap 4 Admin template for Django. It features a huge number of components built to fit together and look fantastic. 
+Open-source **[Django Template](https://www.creative-tim.com/templates/django)** crafted on top of **Black Dashboard**, a popular Bootstrap 4 design. Start your development with a modern, dark-themed Bootstrap 4 Admin template for Django. It features a huge number of components built to fit together and look fantastic. If you want to code faster, with a smooth workflow, then you should try this template carefully developed with Django, a well-known Python Framework.
 
-- ✅ `Up-to-date dependencies`
-- ✅ Database: `sqlite`
-- ✅ UI-Ready app, Django Native ORM
-- ✅ `Session-Based authentication`, Forms validation
-- 🚀 [PRO Version](https://www.creative-tim.com/product/black-dashboard-pro-django) - Superior UI, CI/CD and premium support
+> NOTE: Starter provided in partnership with [App-Generator](https://app-generator.dev/), an open-source platform for developers
+
+<br />
+
+## Features: 
+
+- Simple, Easy-to-Extend codebase
+- Black Dashboard
+- [Bootstrap](https://app-generator.dev/docs/templates/bootstrap.html) CSS Styling 
+- Dynamic Tables - read [docs](https://app-generator.dev/docs/developer-tools/dynamic-datatables.html)
+- Dynamic API - read [docs](https://app-generator.dev/docs/developer-tools/dynamic-api.html)
+- Charts
+- [Django CLI Package](https://app-generator.dev/docs/developer-tools/django-cli/index.html)
+    - [Commit/rollback Git Changes](https://app-generator.dev/docs/developer-tools/django-cli/git-interface.html)
+    - `Backup & restore DB`
+    - [Interact with Django Core](https://app-generator.dev/docs/developer-tools/django-cli/query-django.html)
+    - `Manage Environment`
+    - `Manage Dependencies`
+- Session-based Authentication, Password recovery
+- DB Persistence: SQLite (default), can be used with MySql, PgSql
+- Docker, CI/CD for Render
+- Vite for assets management 
 
 <br />
 
@@ -33,7 +50,7 @@ Open-source **[Django Template](https://www.creative-tim.com/templates/django)**
 
 ## Demo
 
-> To authenticate use the default credentials ***test / ApS12_ZZs8*** or create a new user on the **registration page**.
+> To authenticate use the default credentials ***test / Pass12__*** or create a new user on the **registration page**.
 
 - **Black Dashboard Django** [Login Page](https://www.creative-tim.com/live/black-dashboard-django)
 
@@ -44,8 +61,8 @@ Open-source **[Django Template](https://www.creative-tim.com/templates/django)**
 > UNZIP the sources or clone the repository. After getting the code, open a terminal and navigate to the working directory, with product source code.
 
 ```bash
-$ git clone https://github.com/app-generator/django-black-dashboard.git
-$ cd django-black-dashboard
+$ git clone https://github.com/creativetimofficial/black-dashboard-django.git
+$ cd black-dashboard-django
 ```
 
 <br />
@@ -95,61 +112,36 @@ Within the download you'll find the following directories and files:
 ```bash
 < PROJECT ROOT >
    |
-   |-- core/                               # Implements app configuration
-   |    |-- settings.py                    # Defines Global Settings
-   |    |-- wsgi.py                        # Start the app in production
-   |    |-- urls.py                        # Define URLs served by all apps/nodes
+   |-- config/                            
+   |    |-- settings.py                  # Project Configuration  
+   |    |-- urls.py                      # Project Routing
    |
    |-- apps/
-   |    |
-   |    |-- home/                          # A simple app that serve HTML files
-   |    |    |-- views.py                  # Serve HTML pages for authenticated users
-   |    |    |-- urls.py                   # Define some super simple routes  
-   |    |
-   |    |-- authentication/                # Handles auth routes (login and register)
-   |    |    |-- urls.py                   # Define authentication routes  
-   |    |    |-- views.py                  # Handles login and registration  
-   |    |    |-- forms.py                  # Define auth forms (login and register) 
-   |    |
-   |    |-- static/
-   |    |    |-- <css, JS, images>         # CSS files, Javascripts files
-   |    |
-   |    |-- templates/                     # Templates used to render pages
-   |         |-- includes/                 # HTML chunks and components
-   |         |    |-- navigation.html      # Top menu component
-   |         |    |-- sidebar.html         # Sidebar component
-   |         |    |-- footer.html          # App Footer
-   |         |    |-- scripts.html         # Scripts common to all pages
-   |         |
-   |         |-- layouts/                   # Master pages
-   |         |    |-- base-fullscreen.html  # Used by Authentication pages
-   |         |    |-- base.html             # Used by common pages
-   |         |
-   |         |-- accounts/                  # Authentication pages
-   |         |    |-- login.html            # Login page
-   |         |    |-- register.html         # Register page
-   |         |
-   |         |-- home/                      # UI Kit Pages
-   |              |-- index.html            # Index page
-   |              |-- 404-page.html         # 404 page
-   |              |-- *.html                # All other pages
+   |    |-- charts                        
+   |    |-- dyn_api                      # APP Routing
+   |    |-- dyn_dt                       # APP Models 
+   |    |-- pages                        # Tests  
+   |     
+   |-- requirements.txt                  # Project Dependencies
    |
-   |-- requirements.txt                     # Development modules - SQLite storage
-   |
-   |-- .env                                 # Inject Configuration via Environment
-   |-- manage.py                            # Start the app - Django default start script
+   |-- env.sample                        # ENV Configuration (default values)
+   |-- manage.py                         # Start the app - Django default start script
    |
    |-- ************************************************************************
 ```
 
 <br />
 
-> The bootstrap flow
+## Deploy on [Render](https://render.com/)
 
-- Django bootstrapper `manage.py` uses `core/settings.py` as the main configuration file
-- `core/settings.py` loads the app magic from `.env` file
-- Redirect the guest users to Login page
-- Unlock the pages served by *app* node for authenticated users
+- Create a Blueprint instance
+  - Go to https://dashboard.render.com/blueprints this link.
+- Click `New Blueprint Instance` button.
+- Connect your `repo` which you want to deploy.
+- Fill the `Service Group Name` and click on `Update Existing Resources` button.
+- After that your deployment will start automatically.
+
+At this point, the product should be LIVE.
 
 <br />
 
@@ -174,9 +166,12 @@ We use GitHub Issues as the official bug tracker for the **Black Dashboard Djang
 
 <br />
 
-## Technical Support or Questions
+## Support
 
-If you have questions or need help integrating the product please [contact us](https://www.creative-tim.com/contact-us) instead of opening an issue.
+Being a product that is actively supported and improved, feel free to contact us using these funnels: 
+
+- **Creative-Tim** [Discord](https://discord.gg/haJ7ErsNY3) Server - for general product assistance and UI/UX
+- **App Generator** [Discord](https://discord.gg/fZC6hup) Server - for **Django specific questions** and assistance. 
 
 <br />
 
@@ -209,17 +204,21 @@ If you have questions or need help integrating the product please [contact us](h
 
 > For more components, pages and priority on support, feel free to take a look at this amazing starter:
 
-Black Dashboard is a premium [Bootstrap](https://www.admin-dashboards.com/bootstrap-5-templates/) Design now available for download in Django. Made of hundred of elements, designed blocks, and fully coded pages, Black Dashboard PRO is ready to help you create stunning websites and web apps.
+Black Dashboard is a premium [Bootstrap Template](https://app-generator.dev/docs/templates/bootstrap.html) Design now available for download in Django. Made of hundred of elements, designed blocks, and fully coded pages, Black Dashboard PRO is ready to help you create stunning websites and web apps.
 
-- ✅ `Up-to-date Dependencies`
-- ✅ `Design`: [Django Theme Black](https://github.com/app-generator/django-admin-black-pro) - `PRO Version`
-- ✅ `Sections` covered by the design:
-  - ✅ **Admin section** (reserved for superusers)
-  - ✅ **Authentication**: `Django.contrib.AUTH`, Registration
-  - ✅ **All Pages** available in for ordinary users 
-- ✅ `Docker`
-- 🚀 `Deployment` 
-  - `CI/CD` flow via `Render`
+- Simple, Easy-to-Extend Codebase
+- Soft UI Dashboard Design - PRO Version Integration
+- Dynamic DataTables - [Generate Data Tables with Django](https://app-generator.dev/docs/developer-tools/dynamic-datatables.html) (no coding)
+- Dynamic API - [Generate API Endpoints with Django](https://app-generator.dev/docs/developer-tools/dynamic-api.html) (no coding)
+- Charts via ApexCharts.js
+- Media Files Manager
+- Async Tasks (celery)
+- [CLI Tools for Django](https://app-generator.dev/docs/developer-tools/django-cli/index.html) - migrate DB, manage GIT commits and   
+- Session-based Authentication, Password recovery
+- DB Persistence: SQLite (default), can be used with MySql, PgSql
+- Docker 
+- CI/CD integration for [Render](https://app-generator.dev/docs/deployment/render/index.html) 
+- [Vite](https://app-generator.dev/docs/technologies/vite/index.html) for assets management 
 
 <br />
 
@@ -228,4 +227,4 @@ Black Dashboard is a premium [Bootstrap](https://www.admin-dashboards.com/bootst
 <br />
 
 ---
-[Black Dashboard Django](https://www.creative-tim.com/product/black-dashboard-django) - Provided by [Creative Tim](https://www.creative-tim.com/) and [AppSeed](https://appseed.us).
+[Black Dashboard Django](https://www.creative-tim.com/product/black-dashboard-django) - Provided by [Creative Tim](https://www.creative-tim.com/) and [App-Generator](https://app-generator.dev/).
