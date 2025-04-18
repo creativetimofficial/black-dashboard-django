@@ -1,21 +1,22 @@
 {
-    "name": "boilerplate-code-django-dashboard",
-    "mastertemplate": "boilerplate-code-django-dashboard",
-    "version": "2stable.0.1",
-    "description": "Template project - Django Boilerplate Code",
-    "scripts": {},
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/app-generator/boilerplate-code-django-dashboard"
-    },
-    "bugs": {
-        "url": "https://github.com/app-generator/boilerplate-code-django-dashboard/issues",
-        "email": "support@appseed.us"
-    },
-    "author": "AppSeed App Generator <support@appseed.us> (https://appseed.us)",
-    "engines": {
-        "node": ">=10.0.0"
-    },
-    "dependencies": {},
-    "devDependencies": {}
+  "name": "django-black-dashboard",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite build --watch --mode development",
+    "build": "vite build --mode production && npm run minify-css",
+    "minify-css": "postcss static/assets/css/*.css --dir static/assets/css --no-map --ext .min.css"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "autoprefixer": "^10.4.20",
+    "cssnano": "^7.0.6",
+    "postcss": "^8.5.3",
+    "postcss-cli": "^11.0.0",
+    "sass": "^1.85.1",
+    "vite": "^6.2.0"
+  }
 }
