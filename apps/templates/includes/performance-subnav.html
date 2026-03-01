@@ -60,6 +60,16 @@
                         <i class="tim-icons icon-puzzle-10 mr-1"></i> Strategies
                     </a>
                 </li>
+                <li class="nav-item" style="margin-left: 8px; margin-right: 4px; border-left: 1px solid rgba(255,255,255,0.1); padding-left: 8px;">
+                    <span style="font-size: 0.68rem; color: rgba(255,255,255,0.35); padding: 6px 4px; display: inline-block;">ACCA</span>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {% if segment == 'performance_accumulators' %}active{% endif %}"
+                       href="{% url 'performance_accumulators' %}{% if filter_querystring %}?{{ filter_querystring }}{% endif %}"
+                       style="font-size: 0.82rem; padding: 6px 12px;">
+                        <i class="tim-icons icon-components mr-1"></i> Accumulators
+                    </a>
+                </li>
             </ul>
         </div>
     </div>

@@ -25,6 +25,9 @@ urlpatterns = [
     path('performance/overunder/financial/', views.performance_ou_financial, name='performance_ou_financial'),
     path('performance/overunder/strategies/', views.performance_ou_strategies, name='performance_ou_strategies'),
 
+    # Performance sub-pages — Accumulators
+    path('performance/accumulators/', views.performance_accumulators, name='performance_accumulators'),
+
     # Methodology
     path('methodology/', views.methodology, name='methodology'),
 

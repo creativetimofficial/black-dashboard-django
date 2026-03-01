@@ -1,0 +1,396 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Accumulators {% endblock %}
+
+{% block stylesheets %}
+<style>
+    .badge-pill { font-size: 0.7rem; padding: 0.35em 0.65em; font-weight: 500; }
+    .filter-bar { background: rgba(255,255,255,0.04); border-radius: 0.4285rem; padding: 15px; margin-bottom: 20px; }
+    .filter-bar .form-control { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); color: #fff; font-size: 0.85rem; }
+    .filter-bar .form-control:focus { border-color: #1d8cf8; }
+    .filter-bar select.form-control option { background: #1e1e2f; color: #fff; }
+    .filter-bar .btn { font-size: 0.85rem; }
+    .stat-number { font-size: 1.6rem; font-weight: 700; margin-bottom: 2px; }
+    .stat-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.5px; color: rgba(255,255,255,0.5); }
+    .acca-legs { font-size: 0.78rem; line-height: 1.6; }
+    .acca-legs .leg { display: block; }
+    .acca-legs .leg-outcome { font-weight: 600; font-size: 0.68rem; padding: 1px 6px; border-radius: 3px; }
+    @media (max-width: 768px) {
+        .table .hide-mobile { display: none; }
+        .table td, .table th { font-size: 0.75rem; padding: 0.4rem; }
+    }
+</style>
+{% endblock stylesheets %}
+
+{% block content %}
+
+    <div class="content">
+        {% include 'includes/performance-subnav.html' %}
+        {% include 'includes/performance-time-filter.html' %}
+
+        <!-- League Filter Bar -->
+        <div class="row">
+            <div class="col-12">
+                <div class="filter-bar" style="margin-bottom: 25px;">
+                    <form method="get" class="row align-items-end">
+                        {% if period %}<input type="hidden" name="period" value="{{ period }}">{% endif %}
+                        {% if period == 'custom' and date_from %}<input type="hidden" name="date_from" value="{{ date_from }}">{% endif %}
+                        {% if period == 'custom' and date_to %}<input type="hidden" name="date_to" value="{{ date_to }}">{% endif %}
+                        <div class="col-md-6 col-sm-6 mb-2">
+                            <label style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px;">League</label>
+                            <select name="league" class="form-control form-control-sm">
+                                <option value="">All Leagues</option>
+                                {% for opt in league_options %}
+                                <option value="{{ opt.code }}" {% if opt.code == league_filter %}selected{% endif %}>{{ opt.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-md-6 col-sm-6 mb-2">
+                            <button type="submit" class="btn btn-primary btn-sm btn-block">Apply Filter</button>
+                        </div>
+                    </form>
+                    {% if league_filter %}
+                    <div style="margin-top: 10px;">
+                        <span class="badge badge-pill" style="background: rgba(29,140,248,0.3); color: #1d8cf8; font-size: 0.72rem; padding: 0.4em 0.8em;">
+                            {% for opt in league_options %}{% if opt.code == league_filter %}{{ opt.name }}{% endif %}{% endfor %}
+                        </span>
+                        <a href="?{% if period %}period={{ period }}{% endif %}{% if period == 'custom' and date_from %}&date_from={{ date_from }}{% endif %}{% if period == 'custom' and date_to %}&date_to={{ date_to }}{% endif %}" style="font-size: 0.72rem; color: rgba(255,255,255,0.5); margin-left: 8px;">Clear filter</a>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        {% if all_stats.bets > 0 %}
+
+        <!-- Section Header -->
+        <div class="row">
+            <div class="col-12">
+                <h3 class="text-white mb-3" style="font-size: 1.1rem; font-weight: 600; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px;">
+                    <i class="tim-icons icon-components mr-2"></i>Accumulator Performance
+                    <small style="font-size: 0.7rem; color: rgba(255,255,255,0.5); display: block; margin-top: 4px;">Doubles &amp; trebles from top 5 daily value bets (1 unit flat stake)</small>
+                </h3>
+            </div>
+        </div>
+
+        <!-- KPI Cards -->
+        <div class="row">
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="card card-stats">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-5 col-md-4"><div class="icon-big text-center"><i class="tim-icons icon-components" style="color: #1d8cf8;"></i></div></div>
+                            <div class="col-7 col-md-8">
+                                <div class="numbers"><p class="card-category">Total Accumulators</p><p class="card-title stat-number">{{ all_stats.bets }}</p></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="card card-stats">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-5 col-md-4"><div class="icon-big text-center"><i class="tim-icons icon-trophy" style="color: #00f2c3;"></i></div></div>
+                            <div class="col-7 col-md-8">
+                                <div class="numbers"><p class="card-category">Win Rate</p><p class="card-title stat-number">{{ all_stats.win_rate }}%</p></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="card card-stats">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-5 col-md-4"><div class="icon-big text-center"><i class="tim-icons icon-money-coins" style="color: {% if all_stats.profit >= 0 %}#00f2c3{% else %}#fd5d93{% endif %};"></i></div></div>
+                            <div class="col-7 col-md-8">
+                                <div class="numbers"><p class="card-category">Net P/L</p><p class="card-title stat-number {% if all_stats.profit >= 0 %}text-success{% else %}text-danger{% endif %}">{% if all_stats.profit >= 0 %}+{% endif %}{{ all_stats.profit }}u</p></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="card card-stats">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-5 col-md-4"><div class="icon-big text-center"><i class="tim-icons icon-chart-bar-32" style="color: {% if all_stats.roi >= 0 %}#00f2c3{% else %}#fd5d93{% endif %};"></i></div></div>
+                            <div class="col-7 col-md-8">
+                                <div class="numbers"><p class="card-category">ROI</p><p class="card-title stat-number {% if all_stats.roi >= 0 %}text-success{% else %}text-danger{% endif %}">{% if all_stats.roi >= 0 %}+{% endif %}{{ all_stats.roi }}%</p></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Doubles vs Trebles Comparison Table -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-category">Head-to-Head</h5>
+                        <h4 class="card-title">Doubles vs Trebles</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table tablesorter">
+                                <thead class="text-primary">
+                                    <tr>
+                                        <th>Type</th>
+                                        <th>Bets</th>
+                                        <th>Record</th>
+                                        <th>Win Rate</th>
+                                        <th>Avg Odds</th>
+                                        <th>P/L</th>
+                                        <th>ROI</th>
+                                        <th class="hide-mobile">Max DD</th>
+                                        <th class="hide-mobile">Best Win</th>
+                                        <th class="hide-mobile">Kelly</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for label, s, color in type_rows %}
+                                    <tr>
+                                        <td>
+                                            <span style="display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: {{ color }}; margin-right: 6px; vertical-align: middle;"></span>
+                                            <strong style="color: #fff;">{{ label }}</strong>
+                                        </td>
+                                        <td>{{ s.bets }}</td>
+                                        <td>{{ s.wins }}W - {{ s.losses }}L</td>
+                                        <td>{{ s.win_rate }}%</td>
+                                        <td>{{ s.avg_odds }}</td>
+                                        <td class="{% if s.profit >= 0 %}text-success{% else %}text-danger{% endif %}" style="font-weight: 600;">
+                                            {% if s.profit >= 0 %}+{% endif %}{{ s.profit }}u
+                                        </td>
+                                        <td class="{% if s.roi >= 0 %}text-success{% else %}text-danger{% endif %}" style="font-weight: 600;">
+                                            {% if s.roi >= 0 %}+{% endif %}{{ s.roi }}%
+                                        </td>
+                                        <td class="hide-mobile text-warning" style="font-weight: 600;">{{ s.max_drawdown }}u</td>
+                                        <td class="hide-mobile text-success" style="font-weight: 600;">{% if s.best_win > 0 %}+{{ s.best_win }}u{% else %}&mdash;{% endif %}</td>
+                                        <td class="hide-mobile {% if s.kelly > 0 %}text-success{% else %}text-danger{% endif %}" style="font-weight: 600;">
+                                            {% if s.kelly > 0 %}{{ s.kelly }}%{% else %}No edge{% endif %}
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cumulative P/L Chart -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card card-chart">
+                    <div class="card-header">
+                        <h5 class="card-category">Performance Over Time</h5>
+                        <h4 class="card-title">Cumulative P/L &mdash; Doubles vs Trebles</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="chart-area" style="height: 380px;">
+                            <canvas id="accaPlChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Accumulators Table -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-category">Results</h5>
+                        <h4 class="card-title">Recent Accumulators</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table tablesorter">
+                                <thead class="text-primary">
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Type</th>
+                                        <th>Legs</th>
+                                        <th>Combined Odds</th>
+                                        <th class="hide-mobile">Probability</th>
+                                        <th>Result</th>
+                                        <th>P/L</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for acca in page_obj %}
+                                    <tr style="{% if acca.won %}background: rgba(0,242,195,0.04);{% else %}background: rgba(253,93,147,0.03);{% endif %}">
+                                        <td>{{ acca.date|date:"d M Y" }}</td>
+                                        <td>
+                                            <span class="badge badge-pill" style="background: {% if acca.acca_type == 2 %}rgba(29,140,248,0.2); color: #1d8cf8;{% else %}rgba(0,242,195,0.2); color: #00f2c3;{% endif %}">
+                                                {{ acca.type_name }}
+                                            </span>
+                                        </td>
+                                        <td class="acca-legs">
+                                            {% for leg in acca.legs.all %}
+                                            <span class="leg">
+                                                {{ leg.home_team }} vs {{ leg.away_team }}
+                                                <span class="leg-outcome" style="background: {% if leg.max_value_result == 'Home Win' %}rgba(29,140,248,0.15); color: #1d8cf8;{% elif leg.max_value_result == 'Draw' %}rgba(255,141,114,0.15); color: #ff8d72;{% else %}rgba(0,242,195,0.15); color: #00f2c3;{% endif %}">
+                                                    {{ leg.max_value_result }}
+                                                </span>
+                                                {% if leg.actual_ftr == 'H' and leg.max_value_result == 'Home Win' or leg.actual_ftr == 'D' and leg.max_value_result == 'Draw' or leg.actual_ftr == 'A' and leg.max_value_result == 'Away Win' %}
+                                                    <i class="tim-icons icon-check-2" style="color: #00f2c3; font-size: 0.7rem;"></i>
+                                                {% else %}
+                                                    <i class="tim-icons icon-simple-remove" style="color: #fd5d93; font-size: 0.7rem;"></i>
+                                                {% endif %}
+                                            </span>
+                                            {% endfor %}
+                                        </td>
+                                        <td style="font-weight: 600;">{{ acca.combined_odds }}</td>
+                                        <td class="hide-mobile">{{ acca.combined_prob|floatformat:2 }}%</td>
+                                        <td>
+                                            {% if acca.won %}
+                                                <span class="badge badge-pill" style="background: rgba(0,242,195,0.2); color: #00f2c3;">WON</span>
+                                            {% else %}
+                                                <span class="badge badge-pill" style="background: rgba(253,93,147,0.2); color: #fd5d93;">LOST</span>
+                                            {% endif %}
+                                        </td>
+                                        <td class="{% if acca.profit >= 0 %}text-success{% else %}text-danger{% endif %}" style="font-weight: 600;">
+                                            {% if acca.profit >= 0 %}+{% endif %}{{ acca.profit }}u
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Pagination -->
+                        {% if page_obj.paginator.num_pages > 1 %}
+                        <div class="d-flex justify-content-center" style="margin-top: 20px;">
+                            <nav>
+                                <ul class="pagination" style="margin: 0;">
+                                    {% if page_obj.has_previous %}
+                                    <li class="page-item">
+                                        <a class="page-link" href="?page={{ page_obj.previous_page_number }}{% if league_filter %}&league={{ league_filter }}{% endif %}{% if period %}&period={{ period }}{% endif %}{% if period == 'custom' and date_from %}&date_from={{ date_from }}{% endif %}{% if period == 'custom' and date_to %}&date_to={{ date_to }}{% endif %}"
+                                           style="background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.15); color: #fff;">&laquo;</a>
+                                    </li>
+                                    {% endif %}
+                                    {% for num in page_obj.paginator.page_range %}
+                                        {% if page_obj.number == num %}
+                                        <li class="page-item active">
+                                            <span class="page-link" style="background: #1d8cf8; border-color: #1d8cf8;">{{ num }}</span>
+                                        </li>
+                                        {% elif num > page_obj.number|add:"-3" and num < page_obj.number|add:"3" %}
+                                        <li class="page-item">
+                                            <a class="page-link" href="?page={{ num }}{% if league_filter %}&league={{ league_filter }}{% endif %}{% if period %}&period={{ period }}{% endif %}{% if period == 'custom' and date_from %}&date_from={{ date_from }}{% endif %}{% if period == 'custom' and date_to %}&date_to={{ date_to }}{% endif %}"
+                                               style="background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.15); color: #fff;">{{ num }}</a>
+                                        </li>
+                                        {% endif %}
+                                    {% endfor %}
+                                    {% if page_obj.has_next %}
+                                    <li class="page-item">
+                                        <a class="page-link" href="?page={{ page_obj.next_page_number }}{% if league_filter %}&league={{ league_filter }}{% endif %}{% if period %}&period={{ period }}{% endif %}{% if period == 'custom' and date_from %}&date_from={{ date_from }}{% endif %}{% if period == 'custom' and date_to %}&date_to={{ date_to }}{% endif %}"
+                                           style="background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.15); color: #fff;">&raquo;</a>
+                                    </li>
+                                    {% endif %}
+                                </ul>
+                            </nav>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% else %}
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body text-center" style="padding: 40px;">
+                        <i class="tim-icons icon-components" style="font-size: 2rem; color: rgba(255,255,255,0.3); margin-bottom: 15px;"></i>
+                        <p style="color: rgba(255,255,255,0.5);">No accumulator data available yet. Run <code>python manage.py backcast_accumulators</code> to generate historical accumulators.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+
+{% endblock content %}
+
+{% block javascripts %}
+<script>
+{% if all_stats.bets > 0 %}
+(function() {
+    var chartData = JSON.parse('{{ acca_chart_json|escapejs }}');
+
+    var datasets = [];
+    if (chartData.doubles.data.length > 0) {
+        datasets.push({
+            label: 'Doubles',
+            data: chartData.doubles.data,
+            borderColor: '#1d8cf8',
+            backgroundColor: 'transparent',
+            borderWidth: 2,
+            fill: false,
+            pointRadius: 0,
+            pointHitRadius: 6,
+        });
+    }
+    if (chartData.trebles.data.length > 0) {
+        datasets.push({
+            label: 'Trebles',
+            data: chartData.trebles.data,
+            borderColor: '#00f2c3',
+            backgroundColor: 'transparent',
+            borderWidth: 2,
+            fill: false,
+            pointRadius: 0,
+            pointHitRadius: 6,
+        });
+    }
+
+    // Use the longer label set for x-axis
+    var labels = chartData.doubles.labels.length >= chartData.trebles.labels.length
+        ? chartData.doubles.labels : chartData.trebles.labels;
+
+    var ctx = document.getElementById('accaPlChart').getContext('2d');
+    new Chart(ctx, {
+        type: 'line',
+        data: { labels: labels, datasets: datasets },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            legend: { position: 'bottom', labels: { fontColor: 'rgba(255,255,255,0.7)', padding: 14, boxWidth: 14, usePointStyle: true } },
+            tooltips: {
+                mode: 'index',
+                intersect: false,
+                callbacks: {
+                    label: function(item, data) {
+                        return data.datasets[item.datasetIndex].label + ': ' + (item.yLabel >= 0 ? '+' : '') + item.yLabel.toFixed(1) + 'u';
+                    }
+                }
+            },
+            hover: { mode: 'index', intersect: false },
+            scales: {
+                xAxes: [{
+                    ticks: { fontColor: 'rgba(255,255,255,0.4)', fontSize: 9, maxTicksLimit: 15, maxRotation: 45 },
+                    gridLines: { color: 'rgba(255,255,255,0.06)' }
+                }],
+                yAxes: [{
+                    ticks: {
+                        fontColor: 'rgba(255,255,255,0.4)',
+                        callback: function(v) { return (v >= 0 ? '+' : '') + v + 'u'; }
+                    },
+                    gridLines: {
+                        color: 'rgba(255,255,255,0.06)',
+                        zeroLineColor: 'rgba(255,255,255,0.3)',
+                        zeroLineWidth: 2
+                    }
+                }]
+            }
+        }
+    });
+})();
+{% endif %}
+</script>
+{% endblock javascripts %}

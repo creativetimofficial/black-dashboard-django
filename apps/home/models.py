@@ -70,3 +70,32 @@ class Prediction(models.Model):
     def max_value_pct(self):
         return round(self.max_value * 100, 1)
 
+
+class AccumulatorBet(models.Model):
+    DOUBLE = 2
+    TREBLE = 3
+    TYPE_CHOICES = [(DOUBLE, 'Double'), (TREBLE, 'Treble')]
+
+    acca_type = models.IntegerField(choices=TYPE_CHOICES)
+    date = models.DateField()
+    legs = models.ManyToManyField('Prediction', related_name='accumulators')
+    combined_odds = models.FloatField()
+    combined_prob = models.FloatField()
+    won = models.BooleanField(default=False)
+    profit = models.FloatField(default=0.0)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        indexes = [
+            models.Index(fields=['acca_type']),
+            models.Index(fields=['date']),
+        ]
+        ordering = ['-date']
+
+    def __str__(self):
+        return f"{'Double' if self.acca_type == 2 else 'Treble'} {self.date} (odds: {self.combined_odds:.2f})"
+
+    @property
+    def type_name(self):
+        return 'Double' if self.acca_type == self.DOUBLE else 'Treble'
+

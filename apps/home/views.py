@@ -1026,6 +1026,92 @@ def _get_strategies_context(request):
     }
 
 
+def _get_accumulators_context(request):
+    """Build context for the accumulators performance page."""
+    from apps.home.models import AccumulatorBet
+    from apps.home.accumulators import simulate_accumulators
+
+    _, league_filter, league_options, time_context = _get_base_performance_qs(request)
+
+    acca_qs = AccumulatorBet.objects.all()
+
+    # Apply time filters
+    period = time_context['period']
+    today = datetime.date.today()
+    if period == '7d':
+        acca_qs = acca_qs.filter(date__gte=today - datetime.timedelta(days=7))
+    elif period == '30d':
+        acca_qs = acca_qs.filter(date__gte=today - datetime.timedelta(days=30))
+    elif period == '90d':
+        acca_qs = acca_qs.filter(date__gte=today - datetime.timedelta(days=90))
+    elif period == 'season':
+        if today.month >= 8:
+            season_start = datetime.date(today.year, 8, 1)
+        else:
+            season_start = datetime.date(today.year - 1, 8, 1)
+        acca_qs = acca_qs.filter(date__gte=season_start)
+    elif period == 'custom':
+        date_from_str = time_context['date_from']
+        date_to_str = time_context['date_to']
+        try:
+            if date_from_str:
+                acca_qs = acca_qs.filter(date__gte=datetime.date.fromisoformat(date_from_str))
+            if date_to_str:
+                acca_qs = acca_qs.filter(date__lte=datetime.date.fromisoformat(date_to_str))
+        except (ValueError, TypeError):
+            pass
+
+    if league_filter:
+        acca_qs = acca_qs.filter(legs__div=league_filter).distinct()
+
+    results = simulate_accumulators(acca_qs)
+
+    recent_accas = acca_qs.prefetch_related('legs').order_by('-date', '-combined_odds')
+
+    paginator = Paginator(recent_accas, 25)
+    page_number = request.GET.get('page', 1)
+    page_obj = paginator.get_page(page_number)
+
+    doubles_stats = results.get('doubles', {})
+    trebles_stats = results.get('trebles', {})
+    all_stats = results.get('all', {})
+
+    type_rows = [
+        ('Doubles', doubles_stats, '#1d8cf8'),
+        ('Trebles', trebles_stats, '#00f2c3'),
+        ('Combined', all_stats, '#e14eca'),
+    ]
+
+    return {
+        'league_filter': league_filter,
+        'league_options': league_options,
+        'doubles_stats': doubles_stats,
+        'trebles_stats': trebles_stats,
+        'all_stats': all_stats,
+        'type_rows': type_rows,
+        'page_obj': page_obj,
+        'acca_chart_json': json.dumps({
+            'doubles': {
+                'labels': results['doubles'].get('date_labels', []),
+                'data': results['doubles'].get('pl_values', []),
+            },
+            'trebles': {
+                'labels': results['trebles'].get('date_labels', []),
+                'data': results['trebles'].get('pl_values', []),
+            },
+        }),
+        **time_context,
+    }
+
+
+@login_required(login_url="/login/")
+def performance_accumulators(request):
+    context = {'segment': 'performance_accumulators'}
+    context.update(_get_accumulators_context(request))
+    html_template = loader.get_template('home/performance_accumulators.html')
+    return HttpResponse(html_template.render(context, request))
+
+
 @login_required(login_url="/login/")
 def methodology(request):
     """Static page explaining the prediction methodology."""
